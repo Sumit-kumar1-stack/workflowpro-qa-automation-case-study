@@ -1,0 +1,8 @@
+{
+  "roles": ["Admin", "Manager", "Employee"],
+  "notes": "Credentials are intentionally excluded. Use dedicated test users supplied through environment variables or a secret manager.",
+  "tenant_expectations": {
+    "company1": ["Admin", "Manager", "Employee"],
+    "company2": ["Admin", "Manager", "Employee"]
+  }
+}

@@ -1,0 +1,4 @@
+-r requirements.txt
+Appium-Python-Client>=4.0,<6.0
+# Install BrowserStack SDK as documented when executing App Automate tests:
+# python -m pip install https://sdk-assets.browserstack.com/python/browserstack_sdk-latest.tar.gz

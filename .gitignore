@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+
+# Test artifacts
+playwright-report/
+test-results/
+allure-results/
+reports/*.html
+reports/*.xml
+reports/screenshots/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

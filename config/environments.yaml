@@ -1,0 +1,13 @@
+environments:
+  assessment:
+    api_base_url: "https://app.workflowpro.com/api/v1"
+    tenants:
+      company1:
+        web_url: "https://company1.workflowpro.com"
+        tenant_id: "company1"
+      company2:
+        web_url: "https://company2.workflowpro.com"
+        tenant_id: "company2"
+
+# Real credentials/tokens intentionally do not belong in this file.
+# They are injected through environment variables or CI secret storage.

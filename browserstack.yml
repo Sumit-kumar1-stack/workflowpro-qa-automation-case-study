@@ -1,0 +1,32 @@
+# BrowserStack Automate + Playwright/Pytest configuration.
+# Keep credentials in environment variables / CI secrets. If your SDK version
+# does not interpolate these values, run `browserstack-sdk setup` locally/CI.
+userName: ${BROWSERSTACK_USERNAME}
+accessKey: ${BROWSERSTACK_ACCESS_KEY}
+framework: pytest
+
+# Cost-conscious smoke matrix: one mainstream desktop, one Firefox desktop,
+# one Android mobile-browser device. Safari/WebKit coverage can be scheduled
+# nightly rather than on every pull request.
+platforms:
+  - browserName: chrome
+    os: Windows
+    osVersion: 11
+    browserVersion: latest
+  - browserName: playwright-firefox
+    os: Windows
+    osVersion: 11
+    browserVersion: latest
+  - browserName: chrome
+    osVersion: 15.0
+    deviceName: Samsung Galaxy S25 Ultra
+
+parallelsPerPlatform: 1
+browserstackLocal: false
+buildName: workflowpro-qa-case-study
+projectName: workflowpro-qa-automation
+
+# Useful debugging data for CI failures.
+debug: true
+networkLogs: true
+consoleLogs: info

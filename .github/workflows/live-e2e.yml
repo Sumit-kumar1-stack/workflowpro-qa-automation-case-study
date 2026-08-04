@@ -1,0 +1,46 @@
+name: WorkFlow Pro Live E2E
+
+on:
+  workflow_dispatch:
+
+jobs:
+  chromium-smoke:
+    runs-on: ubuntu-latest
+    env:
+      RUN_LIVE_E2E: "true"
+      WORKFLOWPRO_API_BASE_URL: ${{ secrets.WORKFLOWPRO_API_BASE_URL }}
+      WORKFLOWPRO_COMPANY1_WEB_URL: ${{ secrets.WORKFLOWPRO_COMPANY1_WEB_URL }}
+      WORKFLOWPRO_COMPANY2_WEB_URL: ${{ secrets.WORKFLOWPRO_COMPANY2_WEB_URL }}
+      WORKFLOWPRO_COMPANY1_ID: ${{ secrets.WORKFLOWPRO_COMPANY1_ID }}
+      WORKFLOWPRO_COMPANY2_ID: ${{ secrets.WORKFLOWPRO_COMPANY2_ID }}
+      WORKFLOWPRO_COMPANY1_ADMIN_EMAIL: ${{ secrets.WORKFLOWPRO_COMPANY1_ADMIN_EMAIL }}
+      WORKFLOWPRO_COMPANY1_ADMIN_PASSWORD: ${{ secrets.WORKFLOWPRO_COMPANY1_ADMIN_PASSWORD }}
+      WORKFLOWPRO_COMPANY1_ADMIN_TOTP: ${{ secrets.WORKFLOWPRO_COMPANY1_ADMIN_TOTP }}
+      WORKFLOWPRO_COMPANY2_USER_EMAIL: ${{ secrets.WORKFLOWPRO_COMPANY2_USER_EMAIL }}
+      WORKFLOWPRO_COMPANY2_USER_PASSWORD: ${{ secrets.WORKFLOWPRO_COMPANY2_USER_PASSWORD }}
+      WORKFLOWPRO_COMPANY2_USER_TOTP: ${{ secrets.WORKFLOWPRO_COMPANY2_USER_TOTP }}
+      WORKFLOWPRO_COMPANY1_TOKEN: ${{ secrets.WORKFLOWPRO_COMPANY1_TOKEN }}
+      WORKFLOWPRO_COMPANY2_TOKEN: ${{ secrets.WORKFLOWPRO_COMPANY2_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Execute critical live suite
+        run: |
+          mkdir -p reports
+          pytest tests/api tests/ui tests/integration \
+            --browser chromium -v \
+            --junitxml=reports/junit-live.xml \
+            --html=reports/live-report.html \
+            --self-contained-html
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-e2e-reports
+          path: reports/

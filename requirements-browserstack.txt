@@ -1,0 +1,3 @@
+-r requirements.txt
+# BrowserStack's official Pytest SDK distribution endpoint.
+https://sdk-assets.browserstack.com/python/browserstack_sdk-latest.tar.gz
