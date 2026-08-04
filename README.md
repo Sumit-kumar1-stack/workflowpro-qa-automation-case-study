@@ -1,5 +1,10 @@
 # WorkFlow Pro — QA Automation Case Study
 
+## Case Study Document
+
+Written case study response:
+https://docs.google.com/document/d/1Tj1x_rBaGq10Zb50oAOkQFscnHnmB_mvTkwy8i6vRRU/edit?usp=sharing
+
 A submission-ready reference implementation for the **QA Automation Engineering Intern** case study. It demonstrates flaky-test stabilization, pytest/Playwright framework design, API testing, cross-tenant security validation, responsive/mobile-browser coverage, BrowserStack integration concepts, and CI/CD strategy.
 
 > The assessment application and credentials are treated as external test-environment inputs. No real passwords, API tokens, or BrowserStack credentials are committed.
